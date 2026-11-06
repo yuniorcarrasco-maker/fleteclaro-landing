@@ -97,10 +97,27 @@
         display: inline-block; border: 1px solid var(--line); border-radius: 999px;
         padding: 6px 13px; font-size: 13px; color: var(--muted);
       }
-      .hero__art {
-        width: 100%; height: auto; border-radius: var(--radius); margin: 22px 0 12px;
-        border: 1px solid var(--line); display: block;
+      .hero__artwrap {
+        overflow: hidden; border-radius: var(--radius); margin: 22px 0 12px;
+        border: 1px solid var(--line);
       }
+      .hero__art {
+        width: 100%; height: auto; display: block;
+        animation: heroPan 30s ease-in-out infinite alternate; will-change: transform;
+      }
+      @keyframes heroPan {
+        from { transform: scale(1.12) translateX(-1.6%); }
+        to   { transform: scale(1.12) translateX(1.6%); }
+      }
+      .card__img {
+        width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block;
+        border-radius: 10px; border: 1px solid var(--line); margin: 0 0 12px;
+      }
+      .card__mpg { font-size: 30px; font-weight: 800; line-height: 1; margin: 2px 0 6px; color: var(--amber, #f2a900); }
+      .card__mpg small { font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
+      .who-card { animation: fadeUp .8s ease both; animation-delay: var(--d, 0s); }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+      @media (prefers-reduced-motion: reduce) { .hero__art, .who-card { animation: none; } }
       .caption { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
       .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
       .trust-line { color: var(--muted); font-size: 13px; margin: 14px 0 0; }
@@ -188,7 +205,7 @@
           </a>
         </div>
         <p class="trust-line"><span data-t="landing.heroTrust">Suscripción con Stripe · Cancela cuando quieras · Empieza gratis</span></p>
-        <img class="hero__art" src="og-fleteclaro.jpg" alt="Semi, box truck, Sprinter y hotshot: el costo se calcula con el rendimiento real de tu camión y el peso que llevas." data-alt-es="Semi, box truck, Sprinter y hotshot: el costo se calcula con el rendimiento real de tu camión y el peso que llevas." data-alt-en="Semi, box truck, Sprinter and hotshot: costs are calculated with your truck's real fuel economy and the weight you're hauling." width="1920" height="1080" />
+        <div class="hero__artwrap"><img class="hero__art" src="og-fleteclaro.jpg" alt="Semi, box truck, Sprinter y hotshot: el costo se calcula con el rendimiento real de tu camión y el peso que llevas." data-alt-es="Semi, box truck, Sprinter y hotshot: el costo se calcula con el rendimiento real de tu camión y el peso que llevas." data-alt-en="Semi, box truck, Sprinter and hotshot: costs are calculated with your truck's real fuel economy and the weight you're hauling." width="1920" height="1080" /></div>
         <p class="caption"><span data-t="landing.heroCaption">Semi, box truck, Sprinter y hotshot: el costo se calcula con el rendimiento real de tu camión y el peso que llevas.</span></p>
       </section>
 
@@ -261,10 +278,10 @@
         <h2><span data-t="landing.whoTitle">Para quién es</span></h2>
         <p class="lead"><span data-t="landing.whoSub">Para el que maneja su propio camión y paga su propio diésel.</span></p>
         <div class="grid grid--4">
-          <article class="card"><h3><span data-t="landing.whoSemi">Semi / 18 ruedas</span></h3><p><span data-t="landing.whoSemiBody">Tramos largos, unos 6.5 mpg cargado, peajes y costos fijos altos.</span></p></article>
-          <article class="card"><h3><span data-t="landing.whoBox">Box truck / rabón</span></h3><p><span data-t="landing.whoBoxBody">Reparto y LTL expedito, 8 a 10 mpg: la columna vertebral del hombre-camión.</span></p></article>
-          <article class="card"><h3><span data-t="landing.whoVan">Sprinter / cargo van</span></h3><p><span data-t="landing.whoVanBody">Mensajería, carga médica y e-commerce, 14 a 18 mpg, sin CDL.</span></p></article>
-          <article class="card"><h3><span data-t="landing.whoHotshot">Hotshot / pickup + flatbed</span></h3><p><span data-t="landing.whoHotshotBody">Cargas urgentes en gooseneck, 10 a 12 mpg cargado.</span></p></article>
+          <article class="card who-card" style="--d:0s"><img class="card__img" src="veh-semi.jpg" alt="Semi de 18 ruedas" loading="lazy" /><h3><span data-t="landing.whoSemi">Semi / 18 ruedas</span></h3><p class="card__mpg">6.5 <small>MPG</small></p><p><span data-t="landing.whoSemiBody">Tramos largos, unos 6.5 mpg cargado, peajes y costos fijos altos.</span></p></article>
+          <article class="card who-card" style="--d:.1s"><img class="card__img" src="veh-box.jpg" alt="Box truck / rabón" loading="lazy" /><h3><span data-t="landing.whoBox">Box truck / rabón</span></h3><p class="card__mpg">8–10 <small>MPG</small></p><p><span data-t="landing.whoBoxBody">Reparto y LTL expedito, 8 a 10 mpg: la columna vertebral del hombre-camión.</span></p></article>
+          <article class="card who-card" style="--d:.2s"><img class="card__img" src="veh-van.jpg" alt="Sprinter / cargo van" loading="lazy" /><h3><span data-t="landing.whoVan">Sprinter / cargo van</span></h3><p class="card__mpg">14–18 <small>MPG</small></p><p><span data-t="landing.whoVanBody">Mensajería, carga médica y e-commerce, 14 a 18 mpg, sin CDL.</span></p></article>
+          <article class="card who-card" style="--d:.3s"><img class="card__img" src="veh-hotshot.jpg" alt="Hotshot / pickup + flatbed" loading="lazy" /><h3><span data-t="landing.whoHotshot">Hotshot / pickup + flatbed</span></h3><p class="card__mpg">10–12 <small>MPG</small></p><p><span data-t="landing.whoHotshotBody">Cargas urgentes en gooseneck, 10 a 12 mpg cargado.</span></p></article>
         </div>
       </section>
 
